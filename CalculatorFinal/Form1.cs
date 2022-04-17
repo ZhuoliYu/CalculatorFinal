@@ -287,9 +287,46 @@ namespace CalculatorFinal
 
         private void LOCButton_Click(object sender, EventArgs e)
         {
-            
+            double dec = double.Parse(displayLabel.Text);
+            displayLabel.Text = CovertToLocation(dec);
+            Reverse(displayLabel.Text);
+            displayLabel.Text = Reverse(displayLabel.Text);
 
         }
+
+
+        private string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
+        public string CovertToLocation(double Dec)
+        {
+            char[] letterArr = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+            int maxPow = 0;
+            string loc = "";
+            while (Math.Pow(2, maxPow) < Dec)
+            {
+                maxPow++;
+            }
+            maxPow--;
+            for (int i = maxPow; i >= 0; i--)
+            {
+                if (Math.Pow(2, i) <= Dec)
+                {
+                    loc += letterArr[i];
+                    Dec = Dec - Math.Pow(2, i);
+                }
+            }
+            return loc;
+        }
+      
+        //void means no data or change or just console line, means empty
+
+
+
 
         private void ButtonZero_Click(object sender, EventArgs e)
         {
