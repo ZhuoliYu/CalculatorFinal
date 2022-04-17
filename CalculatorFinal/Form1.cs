@@ -294,6 +294,7 @@ namespace CalculatorFinal
 
         }
 
+
         private string Reverse(string s)
         {
             char[] charArray = s.ToCharArray();
